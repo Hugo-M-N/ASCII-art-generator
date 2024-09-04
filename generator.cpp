@@ -10,15 +10,15 @@ using namespace std;
 void WIN32();
 void UNIX();
 
-// Variables
-string IPath {".\\Inputs"};
-string OPath {".\\Outputs"};
+void generator(string IPath, string OPath, string FP);
 
+// Variables
 string IFile {};
 string OFile {};
 string file {};
 
-string header = R"(...........................................!"`''````'``^!...........................................
+string header = R"(
+...........................................!"`''````'``^!...........................................
 ........................................."^``^",::::,"^```,.........................................
 ......................................."``":;;II;;;;;I;;:"`'`.......................................
 .....................................!^'";;;;;;;;;;;;;;;;I;"'`I.....................................
@@ -106,6 +106,24 @@ int main() {
 }
 
 void WIN32(){
+    string IPath {".\\Inputs"};
+    string OPath {".\\Outputs"};
+    string FP {"\\"};
+
+    generator(IPath, OPath, FP);
+}
+
+void UNIX(){
+    // This might work but I did't test it yet
+    string IPath {"./Inputs"};
+    string OPath {"./Outputs"};
+    string FP {"/"};
+
+    generator(IPath, OPath, FP);
+}
+
+void generator(string IPath, string OPath, string FP){
+
     if(!filesystem::exists(IPath)){
         system("mkdir Inputs");
     }
@@ -115,7 +133,7 @@ void WIN32(){
 
     system("cls");
     cout << header << endl;
-    cout << "Welcome to ASCII art generator X_X" << endl;
+    cout << "Welcome to ASCII art generator" << endl;
     cout << "Choose a file to make art :" << endl;
     cout << endl;
     bool hasFiles = false;
@@ -136,16 +154,12 @@ void WIN32(){
     cout << endl;
     cout << "File: ";
     getline(cin, file);
-    system(("mkdir " + OPath +"\\"+ file).c_str());
-    IFile = IPath+ "\\" + file;
+    system(("mkdir " + OPath + FP + file).c_str());
+    IFile = IPath+  FP  + file;
     cout << endl;
-    system(("python .\\ASCII.py " + IFile).c_str());
-    system(("move .\\ascii_image.txt " + OPath + "\\" + file + "\\ascii_image.txt" ).c_str());
-    system(("ren " + OPath + "\\" + file + "\\ascii_image.txt" + " ACSII.txt").c_str());
-
-
+    system(("python ." + FP + "ASCII.py " + IFile).c_str());
+    system(("move ." + FP + "ascii_image.txt " + OPath +  FP  + file + FP + "ascii_image.txt" ).c_str());
+    system(("ren " + OPath +  FP  + file + FP + "ascii_image.txt" + " ACSII.txt").c_str());
 }
 
-void UNIX(){
-    // W.I.P
-}
+// Developed by Hugo Martin Nacarino - 2024

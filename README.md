@@ -4,6 +4,12 @@
 
 # ASCII-art-generator
 
+> [!NOTE]
+> Implemented and test it on Windows OS
+
+> [!WARNING]
+> Implemented but not tested on UNIX OS
+
 ## How to use
 If is the first time you execute the program or you erased a necessary directory it will be created again.
 
