@@ -1,6 +1,8 @@
 > [!CAUTION]
 > This project is under developement, errors or unexpected behaviour might happend.
->The behaviour of the program might change.
+> The behaviour of the program might change.
+>  
+> This is a open source program, you can use it and modify and share it, I will apreciate if you reference this if you do some of this thigs.
 
 # ASCII-art-generator
 
